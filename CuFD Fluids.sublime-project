@@ -1,0 +1,50 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"name":"Project",
+			"path": "\\"
+		},
+		{
+			"path":"src",
+			"name":"Source Files",
+			"folder_exclude_patterns":["inc"]		
+		},
+		{
+			"path":"src\\inc",
+			"name":"Headers"
+		},
+		{
+			"path":"Build",
+			"name":"Build Files"
+		},
+		{
+			"path":"docs",
+			"name":"Documentation"
+		}
+	],
+	"build_systems":
+    [
+        {
+            "name": "CUDA Compile",
+
+			"cmd": ["C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v4.2\\bin\\nvcc.exe",
+			"-gencode=arch=compute_20,code=\"sm_20,compute_20\"",
+			"-ccbin","C:\\Program Files (x86)\\Microsoft Visual Studio 10.0\\VC\\bin",
+			"-I",".\\", 
+			"-I","..\\..\\common\\inc", 
+			"-I","..\\..\\..\\shared\\inc",
+			"-I","${project_path}\\src\\inc",
+			"-I","${project_path}\\src",
+			"-I","C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v4.2\\include",
+			"-I","C:\\ProgramData\\NVIDIA Corporation\\NVIDIA GPU Computing SDK 4.2\\shared\\inc",
+			"-I","C:\\ProgramData\\NVIDIA Corporation\\NVIDIA GPU Computing SDK 4.2\\CUDALibraries\\common\\inc",
+			"$file",
+			"-o","${file_name/\\.cu/\\.exe/}"],
+
+			"working_dir":"${project_path}\\Build"
+			
+        }
+    ]
+}
